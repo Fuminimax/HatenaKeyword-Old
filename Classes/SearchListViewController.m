@@ -116,7 +116,7 @@
 	
 	int storyIndex = [indexPath indexAtPosition: [indexPath length] - 1];
 	NSString *tempWord = [[searchListParser.keywordData objectAtIndex:storyIndex] objectForKey:@"title"];
-	keywordViewController.selectedKeyword = [tempWord substringToIndex:[tempWord length]-4];
+	keywordViewController.selectedKeyword = [tempWord substringToIndex:[tempWord length]-5];
 	
 	[self.navigationController pushViewController:keywordViewController animated:YES];
 	[keywordViewController release];

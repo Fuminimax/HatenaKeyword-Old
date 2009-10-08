@@ -9,6 +9,9 @@
 #import "KeywordViewController.h"
 #import "WebViewController.h"
 #import "HatenaKeywordAppDelegate.h"
+#import "Bookmark.h"
+
+//static sqlite3_stmt *insert_statement = nil;
 
 @implementation KeywordViewController
 
@@ -32,8 +35,9 @@
 -(void) showKeywordDetail{
 	WebViewController *webViewController = [[WebViewController alloc] init];
 	
-	NSString *keyword = [self.selectedKeyword substringToIndex:[self.selectedKeyword length]-1];
-	NSString *path = [NSString stringWithFormat:@"http://d.hatena.ne.jp/keyword/%@", keyword];
+	//NSString *keyword = [self.selectedKeyword substringToIndex:[self.selectedKeyword length]-1];
+	//NSString *path = [NSString stringWithFormat:@"http://d.hatena.ne.jp/keyword/%@", keyword];
+	NSString *path = [NSString stringWithFormat:@"http://d.hatena.ne.jp/keyword/%@", self.selectedKeyword];
 	
 	NSString *escapePath = (NSString *)CFURLCreateStringByAddingPercentEscapes(
 																			   NULL,
@@ -44,7 +48,7 @@
 																			   );
 	
 	webViewController.hatenaUrl = escapePath;
-	
+	NSLog(@"keywordDetail URL:%@", escapePath);
 	[self.navigationController pushViewController:webViewController animated:YES];
 	[webViewController release];
 }
@@ -250,6 +254,73 @@
 	[keywordTableView reloadData];
 }
 
+// ブックマークボタンが押されたので、キーワードを登録する
+-(void) info_clicked:(id)sender{
+	
+	HatenaKeywordAppDelegate *appDelegate = (HatenaKeywordAppDelegate *)[[UIApplication sharedApplication] delegate];
+	
+	//NSManagedObjectContext *addingContext = [[NSManagedObjectContext alloc] init];
+	//[appDelegate.managedObjectContext setPersistentStoreCoordinator:[[fetchedResultsController managedObjectContext] persistentStoreCoordinator]];
+	
+	Bookmark *bookmark = (Bookmark *)[NSEntityDescription insertNewObjectForEntityForName:@"Bookmark" inManagedObjectContext:appDelegate.managedObjectContext];
+	
+	//NSString *keyword = [self.selectedKeyword substringToIndex:[self.selectedKeyword length]-1];
+	NSString *tempUrl = [NSString stringWithFormat:@"http://d.hatena.ne.jp/keyword/%@", self.selectedKeyword];
+	NSLog(tempUrl);
+	NSString *escapeUrl = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+																			  NULL,
+																			  (CFStringRef) tempUrl,
+																			  NULL,
+																			  NULL,
+																			  kCFStringEncodingUTF8
+																			  );
+	
+	[bookmark setUrl:escapeUrl];
+	[bookmark setName:self.selectedKeyword];
+	[bookmark setCreated_at:[NSDate date]];
+	
+	NSError *error;
+	if (![appDelegate.managedObjectContext save:&error]) {
+		NSLog(@"Bookmark save error");
+	}else{
+		NSLog(@"Bookmark save SUCCESS");
+	}
+	
+	TopViewController *topViewController = [[TopViewController alloc] init];
+	[topViewController.topTableView reloadData];
+}
+
+// ブックマークボタンが押されたので、キーワードを登録する
+/*
+-(void) info_clicked:(id)sender{
+	
+	//NSString *tempTitle = [self.selectedKeyword substringToIndex:[self.selectedKeyword length]-1];
+	NSString *tempUrl = [NSString stringWithFormat:@"http://d.hatena.ne.jp/keyword/%@", self.selectedKeyword];
+	NSLog(tempUrl);
+	NSString *escapeUrl = (NSString *)CFURLCreateStringByAddingPercentEscapes(
+																			  NULL,
+																			  (CFStringRef) tempUrl,
+																			  NULL,
+																			  NULL,
+																			  kCFStringEncodingUTF8
+																			  );
+	
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //NSString *path = [documentsDirectory stringByAppendingPathComponent:@"HatenaKeyword.db"];
+	NSString *path = [documentsDirectory stringByAppendingString:@"HatenaKeyword.db"];
+	NSLog(path);
+	if (sqlite3_open([path UTF8String], &database) == SQLITE_OK) {
+		Bookmark *bookmark = [[Bookmark alloc] init];
+		[bookmark insertBookmark:database withWord:self.selectedKeyword withUrl:escapeUrl];
+	}	
+	//Bookmark *bookmark = [[Bookmark alloc] init];
+	//[bookmark insertBookmark:self.database withWord:tempTitle withUrl:tempUrl];
+	//HatenaKeywordAppDelegate *appDelegate = (HatenaKeywordAppDelegate *)[[UIApplication sharedApplication] delegate];
+    // Add the book to the global array of books
+    //[appDelegate addKeyWord:tempTitle withUrl:escapeUrl];
+}
+*/
 /*
 // Override to allow orientations other than the default portrait orientation.
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

@@ -17,6 +17,11 @@
 		31723AA210762C4300668702 /* KeywordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31723AA110762C4300668702 /* KeywordViewController.m */; };
 		31723AC71076356100668702 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31723AC61076356100668702 /* WebViewController.m */; };
 		31723AD71076394500668702 /* SearchListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31723AD61076394500668702 /* SearchListViewController.m */; };
+		319C070E1078BE7600CE5A03 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 319C070D1078BE7600CE5A03 /* CoreData.framework */; };
+		319C07121078C6CD00CE5A03 /* HatenaKeyword.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 319C07111078C6CD00CE5A03 /* HatenaKeyword.xcdatamodel */; };
+		31E1832110772FF500DEF764 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 31E1832010772FF500DEF764 /* libsqlite3.0.dylib */; };
+		31E5B1F7107DB70100941A8D /* Bookmark.m in Sources */ = {isa = PBXBuildFile; fileRef = 31E5B1F6107DB70100941A8D /* Bookmark.m */; };
+		31E5B20C107DB88500941A8D /* HatenaKeyword.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 31E5B20B107DB88500941A8D /* HatenaKeyword.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +42,12 @@
 		31723AC61076356100668702 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		31723AD51076394500668702 /* SearchListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchListViewController.h; sourceTree = "<group>"; };
 		31723AD61076394500668702 /* SearchListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchListViewController.m; sourceTree = "<group>"; };
+		319C070D1078BE7600CE5A03 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		319C07111078C6CD00CE5A03 /* HatenaKeyword.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = HatenaKeyword.xcdatamodel; sourceTree = "<group>"; };
+		31E1832010772FF500DEF764 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		31E5B1F5107DB70100941A8D /* Bookmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bookmark.h; sourceTree = "<group>"; };
+		31E5B1F6107DB70100941A8D /* Bookmark.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bookmark.m; sourceTree = "<group>"; };
+		31E5B20B107DB88500941A8D /* HatenaKeyword.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = HatenaKeyword.sqlite; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* HatenaKeyword_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HatenaKeyword_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* HatenaKeyword-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "HatenaKeyword-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -49,6 +60,8 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				31E1832110772FF500DEF764 /* libsqlite3.0.dylib in Frameworks */,
+				319C070E1078BE7600CE5A03 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +83,8 @@
 				31723AC61076356100668702 /* WebViewController.m */,
 				31723AD51076394500668702 /* SearchListViewController.h */,
 				31723AD61076394500668702 /* SearchListViewController.m */,
+				31E5B1F5107DB70100941A8D /* Bookmark.h */,
+				31E5B1F6107DB70100941A8D /* Bookmark.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -106,7 +121,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				31E5B20B107DB88500941A8D /* HatenaKeyword.sqlite */,
 				8D1107310486CEB800E47090 /* HatenaKeyword-Info.plist */,
+				319C07111078C6CD00CE5A03 /* HatenaKeyword.xcdatamodel */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -117,6 +134,8 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				31E1832010772FF500DEF764 /* libsqlite3.0.dylib */,
+				319C070D1078BE7600CE5A03 /* CoreData.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -163,6 +182,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31E5B20C107DB88500941A8D /* HatenaKeyword.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -180,6 +200,8 @@
 				31723AA210762C4300668702 /* KeywordViewController.m in Sources */,
 				31723AC71076356100668702 /* WebViewController.m in Sources */,
 				31723AD71076394500668702 /* SearchListViewController.m in Sources */,
+				319C07121078C6CD00CE5A03 /* HatenaKeyword.xcdatamodel in Sources */,
+				31E5B1F7107DB70100941A8D /* Bookmark.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

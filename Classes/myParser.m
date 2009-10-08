@@ -67,6 +67,7 @@
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
 	if([currentElement isEqualToString:@"title"]){
 		[currentTitle appendString:string];
+		//NSLog(@"title:%@", string);
 	} else if ([currentElement isEqualToString:@"link"]) {
 		[currentLink appendString:string];
 	} else if ([currentElement isEqualToString:@"description"]) {

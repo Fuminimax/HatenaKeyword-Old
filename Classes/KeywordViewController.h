@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import <sqlite3.h>
 #import "myParser.h"
+//#import "TopViewController.h"
 
 @interface KeywordViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>{
 	NSString *selectedKeyword;
@@ -16,6 +18,8 @@
 	UIToolbar *toolBar;
 	
 	myParser *bloglistParser;
+	
+	//sqlite3 *database;
 }
 
 @property (nonatomic, retain) NSString *selectedKeyword;
